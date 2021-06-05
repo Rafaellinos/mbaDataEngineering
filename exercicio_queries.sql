@@ -26,7 +26,7 @@ select
 select
     p.especie_veiculo,
     o.pavimento,
-    sum(p.n_envolvido)
+    sum(p.n_envolvido) as total_acidentes
     from pessoa_acidente as p
     join ocorrencias_transito as o on o.numero_boletim = p.numero_boletim
     group by p.especie_veiculo, o.pavimento;
@@ -36,7 +36,7 @@ select
 select
     p.especie_veiculo,
     o.desc_tipo_acidente,
-    avg(p.idade)
+    avg(p.idade) as media_idade
     from pessoa_acidente as p
     join ocorrencias_transito as o on o.numero_boletim = p.numero_boletim
     group by p.especie_veiculo, o.desc_tipo_acidente;
@@ -45,8 +45,7 @@ select
 
 select
     p.embreagues,
-    avg(p.idade)
+    avg(p.idade) as media_idade
     from pessoa_acidente as p
     where p.embreagues in ('NAO','SIM')
-    and p.idade >= 18
     group by p.embreagues;
