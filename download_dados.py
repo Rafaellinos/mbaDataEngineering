@@ -38,14 +38,17 @@ def download_file(url):
                     f.write(chunk)
     except Exception as e:
         logger.error(f"Erro ao baixar arquivo: {e}")
-    logger.info(f"arquivo {url} baixado com sucesso em {path} ...")
+        return
+    else:
+        logger.info(f"arquivo {url} baixado com sucesso em {path} ...")
     return local_filename
 
 logger.info("Iniciando...")
 
 for link in links:
     filename = download_file(link)
-    logger.info(f"localfile baixado em: {link}")
+    if filename:
+        logger.info(f"localfile baixado em: {link}")
 
 
 logger.info("Processamento conluído")
